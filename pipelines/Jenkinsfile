@@ -1,0 +1,32 @@
+pipeline {
+    
+    agent any
+    stages {
+        stage('Checkout Source Code') {
+            steps {
+                checkout scm: [$class: 'GitSCM', userRemoteConfigs:[[credentialsId: GitHub-SSH-Key-2 url: 'git@github.com:jacobaschulz/multithreading-example-moss.git']]]
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'gcc mt-example-0.c -lpthread'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh './a.out'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'echo Finished!'
+            }
+        }
+
+    }
+
+
+}
