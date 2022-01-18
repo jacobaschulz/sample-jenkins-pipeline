@@ -13,19 +13,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'gcc mt-example-0.c -lpthread'
+                bat 'gcc mt-example-0.c -lpthread'
             }
         }
 
         stage('Test') {
             steps {
-                sh './a.out'
+                bat './a.out'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'echo Finished!'
+                bat 'echo Finished!'
             }
         }
 
